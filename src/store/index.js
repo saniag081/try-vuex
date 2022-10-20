@@ -1,32 +1,18 @@
 import { createStore } from 'vuex';
-import { COMMIT_UPDATE_USERNAME } from '@/common/mutations-types.js';
-import { getUser } from '@/api'
+import profile from '@/store/modules/profile';
 
 const store = createStore({
   state() {
-    return {
-      username: 'Santiago.prueba',
-    };
+    return {};
   },
   getters: {
-    firstName: (state) => (caracter) => {
-      return state.username.split('').join(caracter);
-    },
-    // firstName(state) {
-    //   return state.username.split('.')[0];
+    // rootState -> get others modules
+    // firstName: (state, getters, rootState) => (caracter) => {
+    //   return rootState.profile.username.split('').join(caracter);
     // },
   },
-  mutations: {
-    [COMMIT_UPDATE_USERNAME](state, payload) {
-      state.username = payload;
-    },
-  },
-  actions: {
-    async updateUsername({ commit }, username) {
-      const user = await getUser(1);
-      console.log(user);
-      commit(COMMIT_UPDATE_USERNAME, user.username);
-    },
+  modules: {
+    profile,
   },
 });
 

@@ -3,7 +3,9 @@ import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
   computed: {
-    ...mapState(['username']),
+    ...mapState({
+      username: (state) => state.profile.username,
+    }),
   },
   methods: {
     ...mapActions(['updateUsername']),
