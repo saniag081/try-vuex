@@ -8,12 +8,17 @@ const store = createStore({
   },
   getters: {
     firstName: (state) => (caracter) => {
-      return state.username.split('').reverse().join(caracter);
+      return state.username.split('').join(caracter);
     },
+  },
+  mutations: {
+    updateUsername(state, payload) {
+      state.username = payload;
+    },
+  },
     // firstName(state) {
     //   return state.username.split('.')[0];
     // },
-  },
 });
 
 export default store;

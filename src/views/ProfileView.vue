@@ -1,10 +1,27 @@
+<script>
+import { mapState, mapMutations } from 'vuex';
+
+export default {
+  computed: {
+    ...mapState(['username']),
+  },
+  methods: {
+    ...mapMutations(['updateUsername']),
+  },
+};
+</script>
+
 <template>
   <div class="profile">
     <div class="box">
       <img src="/avatars/avatar.jpg" alt="avatar" />
       <label for="username">Nombre de usuario</label>
-      <input type="text" placeholder="Jane Smith" />
-      <button>Acceder</button>
+      <input
+        type="text"
+        :value="username"
+        @input="updateUsername($event.target.value)"
+        placeholder="Jane Smith" />
+      <button @click="$router.push('/')">Acceder</button>
     </div>
   </div>
 </template>
