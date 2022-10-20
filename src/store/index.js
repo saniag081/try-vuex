@@ -10,15 +10,20 @@ const store = createStore({
     firstName: (state) => (caracter) => {
       return state.username.split('').join(caracter);
     },
+    // firstName(state) {
+    //   return state.username.split('.')[0];
+    // },
   },
   mutations: {
     updateUsername(state, payload) {
       state.username = payload;
     },
   },
-    // firstName(state) {
-    //   return state.username.split('.')[0];
-    // },
+  actions: {
+    updateUsername({ commit }, username) {
+      commit('updateUsername', username);
+    },
+  },
 });
 
 export default store;

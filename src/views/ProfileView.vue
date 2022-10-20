@@ -1,12 +1,12 @@
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
   computed: {
     ...mapState(['username']),
   },
   methods: {
-    ...mapMutations(['updateUsername']),
+    ...mapActions(['updateUsername']),
   },
 };
 </script>
