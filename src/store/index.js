@@ -1,15 +1,17 @@
 import { createStore } from 'vuex';
+import { COMMIT_SET_STATUS } from '@/common/mutations-types.js';
 import profile from '@/store/modules/profile';
 
 const store = createStore({
   state() {
-    return {};
+    return {
+      status: null,
+    };
   },
-  getters: {
-    // rootState -> get others modules
-    // firstName: (state, getters, rootState) => (caracter) => {
-    //   return rootState.profile.username.split('').join(caracter);
-    // },
+  mutations: {
+    [COMMIT_SET_STATUS](state, payload) {
+      state.status =  payload;
+    }
   },
   modules: {
     profile,
