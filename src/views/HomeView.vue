@@ -55,7 +55,7 @@ export default {
         :key="channel.id"
         :id="channel.id"
         :name="channel.name"
-        :messages="channel.message.length"
+        :messages="channel.message"
       />
     </div>
   </aside>
