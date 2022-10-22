@@ -29,10 +29,10 @@ const module = {
       const user = await getUser(1);
       console.log(user);
 
+      commit(COMMIT_UPDATE_USERNAME, user.username);
       if (state.username) {
         commit(COMMIT_SET_STATUS, 'active', { root: true });
       }
-      commit(COMMIT_UPDATE_USERNAME, user.username);
     },
   },
 }
