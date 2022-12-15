@@ -1,16 +1,6 @@
-<script>
-import { mapState, mapMutations, mapActions } from 'vuex';
-
-export default {
-  computed: {
-    ...mapState({
-      username: (state) => state.profile.username,
-    }),
-  },
-  methods: {
-    ...mapActions('profile', ['updateUsername']),
-  },
-};
+<script setup>
+import { ref } from 'vue'
+const username = ref('')
 </script>
 
 <template>
@@ -18,11 +8,7 @@ export default {
     <div class="box">
       <img src="/avatars/avatar.jpg" alt="avatar" />
       <label for="username">Nombre de usuario</label>
-      <input
-        type="text"
-        :value="username"
-        @input="updateUsername($event.target.value)"
-        placeholder="Jane Smith" />
+      <input type="text" placeholder="Jane Smith" v-model="username" />
       <button @click="$router.push('/')">Acceder</button>
     </div>
   </div>
