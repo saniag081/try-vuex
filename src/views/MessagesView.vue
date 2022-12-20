@@ -14,6 +14,7 @@ const channelId = ref(null)
 const title = ref('')
 const people = reactive([
 ])
+const message = ref('')
 
 const messagesView = computed(() => messagesStore.findMessagesByID(channelId.value).map((message) => {
   const author = contactsStore.getContactById(message.author)
@@ -24,6 +25,12 @@ const messagesView = computed(() => messagesStore.findMessagesByID(channelId.val
     self: author.id === 1
   }
 }))
+
+const addMessage = () => {
+  messagesStore.addMessage(channelId.value, message.value);
+  message.value = '';
+};
+
 const scrollToBottom = () => {
   end.value?.scrollIntoView({
     behavior: 'smooth'
@@ -65,12 +72,14 @@ scrollToBottom()
       />
       <span ref="end"></span>
     </div>
-    <footer>
-      <textarea rows="3"></textarea>
+    <form
+      @submit.prevent="addMessage"
+      class="footer">
+      <textarea rows="3" v-model="message"></textarea>
       <button>
         <Icon icon="carbon:send-alt" />
       </button>
-    </footer>
+    </form>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -94,7 +103,7 @@ scrollToBottom()
   .content {
     @apply flex flex-col gap-4 p-4 h-full overflow-y-auto;
   }
-  footer {
+  .footer {
     @apply flex p-2;
     textarea {
       @apply w-full px-2 py-2 resize-none bg-zinc-800 rounded-tl-md rounded-bl-md focus:outline-none;

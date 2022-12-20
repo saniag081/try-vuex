@@ -24,4 +24,16 @@ export default defineStore('messages', {
             return state.findMessagesByID(channelId).filter((messgae) => messgae.read === false).length;
         },
     },
+    actions: {
+        addMessage(channelId, message) {
+            this.messages.push({
+                id: Math.random(),
+                author: 1,
+                channelId,
+                message,
+                timestamp: new Date().toLocaleDateString(),
+                read: false,
+            })
+        },
+    },
 });
